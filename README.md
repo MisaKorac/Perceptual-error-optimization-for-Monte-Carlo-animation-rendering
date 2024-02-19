@@ -1,12 +1,13 @@
 # Perceptual error optimization for Monte Carlo animation rendering
 
-Source code of "Perceptual error optimization for Monte Carlo animation rendering". This example is for demonstration purposes and has not been optimized. It is fully CPU based with a parallelization via OpenMP.
+Open-source code for ["Perceptual error optimization for Monte Carlo animation rendering"](https://misakorac.com/publications/2023_korac_perceptual_error_optimization_for_animation_rendering.html). The code is parallelized on CPU using OpenMP and tested on Ubuntu 22.04 LTS and Windows 11 23H2. It is built upon that of ["Filtered Sliced Optimal Transport
+"](https://github.com/iribis/filtered-sliced-optimal-transport) and ["Sliced Optimal Transport Sampling"](https://github.com/loispaulin/Sliced-Optimal-Transport-Sampling), and we would like to take this opportunity to thank the authors.
 
-In case of problems or bugs don't hesitate to contact me I will do my best to solve it.
+Note that the code is for demonstration purposes only. Still, in case of any issues or questions, do not hesitate to contact us: (Miša Korać: misa.korac@dfki.de, korac@cg.uni-saarland.de or Corentin Salaün: csalaun@mpi-inf.mpg.de).
 
 Dependancies:
 =============
- + OpenMP (`brew install libomp` on macOS)
+ + OpenMP
 
 Code compilation:
 =================
@@ -14,10 +15,11 @@ Code compilation:
     mkdir build
     cd build
     cmake .. -DCMAKE_BUILD_TYPE=Release
-    make
-    cd ..
+    cmake --build .
 
-Example:
+Toy example:
 =================
 
-    ./build/SpatioTemporalFSOT -n 4096 -p 8000 --nbproj 3000 --tileSize 64 --frames 10 -d 2 -o ./results/SpatioTemporalFSOT_64_64_4spp_10_frames.dat
+    ./SpatioTemporalFSOT -n 4096 -p 8000 --nbproj 3000 --tileSize 64 --frames 10 -d 2 -o tile_64x64x10_1spp.dat
+
+Code outputs .dat file and .h file which can be directly included inside a C/C++ code. For loading .dat files, please check demonstrative pre-computed tiles at [the project webpage](https://misakorac.com/publications/2023_korac_perceptual_error_optimization_for_animation_rendering.html).

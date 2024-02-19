@@ -6,6 +6,7 @@
 #include <vector>
 #include <cmath>
 #include <string>
+#include <sstream>
 #include <random>
 #include <cstdlib>
 #include "../Math/VecX.h"
@@ -21,7 +22,7 @@ void usage(const char **argv){
     cerr << argv[0] << " [-o <OutputFileName>] "
                        "[-n <nbPoints>] [-m <nbRealisations>] [-p <nbIteration>]"
                        "[--nbproj <nbDirectionPerStep>] [-s <seed>] [-d <dimension>]" 
-                       "[--tileSize <imageSpaceSize>]"
+                       "[--tileSize <imageSpaceSize>] [--frames <nbFrames>]"
                        "[-i <InputFileName>]" << endl;
 }
 
@@ -66,6 +67,7 @@ void handleParameters(int argc,
             nbPointsets = atoi(argv[i+1]);
             ++i;
         } else if (!strncmp(argv[i], "-p", 2)) {
+
             nbIter = atoi(argv[i+1]);
             ++i;
         } else if (!strncmp(argv[i], "-s", 2)) {
@@ -84,6 +86,7 @@ void handleParameters(int argc,
             cerr << "\t-p <nbIteration> (default 4096): Specifies the number of batches in the optimization process" << endl;
             cerr << "\t--nbproj <nbDirectionPerStep> (default 64): Specifies the number of slices per batch in the optimization process" << endl;
             cerr << "\t--tileSize <imageSpaceSize> (default 64): Specifies the tile size" << endl;
+            cerr << "\t--frames <nbFrames> (default 1): Specifies number of tiles to optimize" << endl;
             cerr << "\t-s <seed> (default 133742): Specifies the random seed" << endl;
             cerr << "\t-d <dimension> (default 2): Specifies samples dimension" << endl;
             cerr << "\t-i <InputFileName> (default none): Specifies an input png file (only for stippling)" << endl;
